@@ -12,13 +12,29 @@ class CategoryItem extends StatelessWidget {
     this.color,
   );
 
+  /* один из видов Routing 
+ void selectCategory(
+      BuildContext
+          ctx) //Создаем контекст. Наименование аргумента должно отличаться от context
+  {
+    Navigator.of(ctx)
+        .push(MaterialPageRoute(builder: (_) //создаем страницу в стеке страниц,
+            {
+      return MealsOfCategoryScreen(id, title);
+    }));
+  }*/
+
   void selectCategory(
       BuildContext
           ctx) //Создаем контекст. Наименование аргумента должно отличаться от context
   {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return MealsOfCategoryScreen(id, title);
-    }));
+    Navigator.of(ctx).pushNamed(
+      '/meals-of-category',
+      arguments: {
+        'id': id,
+        'title': title,
+      },
+    );
   }
 
   @override

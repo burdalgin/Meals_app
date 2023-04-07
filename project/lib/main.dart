@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './categories_screen.dart';
+import './meals_of_catergory_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -44,7 +45,13 @@ class MyApp extends StatelessWidget {
           onSurface: Color.fromARGB(255, 166, 158, 158),
         ),
       ),
-      home: CategoriesScreen(), //устанавливаем домашнюю страницу
+      // home: CategoriesScreen(), //устанавливаем домашнюю страницу
+      initialRoute: '/', //устанавливаем значение домашней страницы
+      routes: {
+        '/': (ctx) => CategoriesScreen(), //устанавливаем домашнюю страницу
+        //это MAP поэтому в {}
+        MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
+      },
     );
   }
 }
