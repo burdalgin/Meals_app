@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import './categories_screen.dart';
 
@@ -46,7 +44,7 @@ class MyApp extends StatelessWidget {
           onSurface: Color.fromARGB(255, 166, 158, 158),
         ),
       ),
-      home: const CategoriesScreen(), //устанавливаем домашнюю страницу
+      home: CategoriesScreen(), //устанавливаем домашнюю страницу
     );
   }
 }

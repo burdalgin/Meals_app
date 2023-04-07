@@ -20,7 +20,11 @@ class CategoriesScreen extends StatelessWidget {
           mainAxisSpacing: 10, //расстояние между элементами в сетке
         ),
         children: dummy_categories
-            .map((catData) => CategoryItem(catData.title, catData.color))
+            .map((catData) => CategoryItem(
+                  catData.id,
+                  catData.title,
+                  catData.color,
+                ))
             .toList(), //каждому елементу в CategoryItem назначаем соответствующие значение из набора данных dummy_categories
       ),
     );
