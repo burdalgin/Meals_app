@@ -3,7 +3,7 @@ import 'package:project/dummy_data.dart';
 import './category_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  //const CategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
           crossAxisSpacing: 10, //расстояние между элементами в сетке
           mainAxisSpacing: 10, //расстояние между элементами в сетке
         ),
-        children: dummy_categories
+        children: dummyCategories
             .map((catData) => CategoryItem(
                   catData.id,
                   catData.title,
