@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './dummy_data.dart';
-import './modals/meal.dart';
+import '../data/dummy_data.dart';
+import '../widgets/meal_item.dart';
 
 class MealsOfCategoryScreen extends StatelessWidget {
   static const routeName = '/meals-of-category'; //создаем адрес экрана для
@@ -26,7 +26,13 @@ class MealsOfCategoryScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return Text(filteredMeals[index].title);
+          return MealItem(
+            title: filteredMeals[index].title,
+            imageUrl: filteredMeals[index].imageUrl,
+            duration: filteredMeals[index].duration,
+            complexity: filteredMeals[index].complexity,
+            affordability: filteredMeals[index].affordability,
+          );
         },
         itemCount: filteredMeals.length,
       ),
