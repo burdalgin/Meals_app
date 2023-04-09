@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/categories_screen.dart';
 import 'screens/meals_of_catergory_screen.dart';
+import 'screens/meal_desctription_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => CategoriesScreen(), //устанавливаем домашнюю страницу
         //это MAP поэтому в {}
         MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
+        MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),
       },
     );
   }
