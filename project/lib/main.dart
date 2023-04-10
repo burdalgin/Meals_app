@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/categories_screen.dart';
 import 'screens/meals_of_catergory_screen.dart';
 import 'screens/meal_desctription_screen.dart';
+import 'screens/page_not_found_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,28 +12,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DeliMeals',
       theme: ThemeData(
-        iconTheme: IconThemeData(color: Colors.purple),
+        iconTheme: const IconThemeData(color: Colors.purple),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
               bodySmall: const TextStyle(
-                  color: Color.fromRGBO(20, 51, 51, 1), fontSize: 10),
-              bodyMedium: const TextStyle(
-                  color: Color.fromRGBO(20, 51, 51, 1), fontSize: 12),
-              bodyLarge: const TextStyle(
                   color: Color.fromRGBO(20, 51, 51, 1), fontSize: 14),
+              bodyMedium: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1), fontSize: 16),
+              bodyLarge: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1), fontSize: 20),
               titleSmall: const TextStyle(
-                  color: Color.fromRGBO(20, 51, 51, 1),
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold),
-              titleMedium: const TextStyle(
-                  color: Color.fromRGBO(20, 51, 51, 1),
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold),
-              titleLarge: const TextStyle(
                   color: Color.fromRGBO(20, 51, 51, 1),
                   fontSize: 14,
                   fontWeight: FontWeight.bold),
+              titleMedium: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+              titleLarge: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
+        primaryColor: Colors.purple,
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: Color.fromARGB(255, 175, 16, 219),
@@ -54,6 +56,28 @@ class MyApp extends StatelessWidget {
         //это MAP поэтому в {}
         MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
         MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),
+      },
+      /*onGenerateRoute: (settings) {
+        //позволяет не регистрировать в Main(routes)
+        //print(settings.arguments);
+        if (settings.name == '/meal-description') {
+          return MaterialPageRoute(
+            builder: (_) => MealDescriptionScreen(),
+          );
+          //  } else if (settings.name == '/some-page') {
+          //    return MaterialPageRoute(
+          //     builder: (ctx) => SOME - PAGE - SCREEN(),
+          //    );
+        }
+        //return MaterialPageRoute(
+        //builder: (ctx) => MealDescriptionScreen(),
+        //);
+      }, //Не понял как работает */
+      onUnknownRoute: (settings) {
+        //если не нашел путь в зарегистрированных или в сгенерированных
+        return MaterialPageRoute(
+          builder: (ctx) => PageNotFoundScreen(),
+        ); //можно задать страницу ОШИБКА
       },
     );
   }

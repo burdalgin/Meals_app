@@ -12,10 +12,11 @@ class MealsOfCategoryScreen extends StatelessWidget {
         String>; //из Route /meals-of-category' достаем данные и распределяем в Map
     final categoryTitle = routeArguments['title']; //достаем из Map значение
     final categoryId = routeArguments['id']; //достаем из Map значение
+
     final filteredMeals = dummyMeals.where(
-      //создаем список с отфильтрованными Meals по категориям
       (meal) {
-        return meal.categories.contains(categoryId);
+        return meal.categories.contains(
+            categoryId); //создаем список с отфильтрованными Meals по категориям
       },
     ).toList();
 
