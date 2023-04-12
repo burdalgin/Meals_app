@@ -4,6 +4,7 @@ import 'screens/meals_of_catergory_screen.dart';
 import 'screens/meal_desctription_screen.dart';
 import 'screens/page_not_found_screen.dart';
 import './screens/tabs_screen.dart';
+import './screens/tabs_screen_bottom.dart';
 
 void main() => runApp(MyApp());
 
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(), //устанавливаем домашнюю страницу
       initialRoute: '/', //устанавливаем значение домашней страницы
       routes: {
-        '/': (ctx) => TabsScreen(), //устанавливаем домашнюю страницу
+        // ignore: prefer_const_constructors
+        '/': (ctx) => TabsScreenBottom(), //устанавливаем домашнюю страницу
         //это MAP поэтому в {}
         MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
         MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),

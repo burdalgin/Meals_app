@@ -7,6 +7,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ВАЖНО! Если экран используется в TabsScreen, то Scaffold не нужен!
     return GridView(
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
