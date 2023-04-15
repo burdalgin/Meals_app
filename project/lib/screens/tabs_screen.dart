@@ -4,7 +4,7 @@ import './favorites_screen.dart';
 
 //Табы наверху экрана
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
+  // const TabsScreen({super.key});
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();

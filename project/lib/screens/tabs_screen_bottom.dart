@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'categories_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 //Табы внизуу экрана
 class TabsScreenBottom extends StatefulWidget {
@@ -19,12 +19,12 @@ class _TabsScreenBottom extends State<TabsScreenBottom> {
       'page': FavoritesScreen(),
       'title': 'Your Favorite',
     }
-  ]; //можно жобавить все что угодно, к чему нужен доступ и вывод на экран какого либо виджета в зависимости от экрана
+  ]; //можно жобавить все что угодно, к чему нужен доступ в зависимости от выбпанного экрана
 
   int _selectedPageIndex = 0;
 
   void _pageSelector(
-      int index) //Flutter автоматически определяет Index при onTap!!!
+      int index) //Flutter автоматически определяет Index при onTap и ндексирует элементы!!!
   {
     setState(() {
       _selectedPageIndex = index;
@@ -33,11 +33,14 @@ class _TabsScreenBottom extends State<TabsScreenBottom> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+        //Scaffold этого экрана котролирует другие экраны, в других экранах вызываемых из TabBar не нужно использовать Scaffold
+        Scaffold(
       appBar: AppBar(
         title:
             Center(child: Text(_pages[_selectedPageIndex]['title'] as String)),
       ),
+      drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
           onTap: _pageSelector,
