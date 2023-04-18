@@ -12,6 +12,7 @@ class MealsOfCategoryScreen extends StatefulWidget {
 class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
   late String categoryTitle; //требует добавить Late
   late List<Meal> displayedMeals; //требует добавить Late
+  //var _loadedInitData = false;
 
   @override
   void initState() {
@@ -20,6 +21,7 @@ class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
 
   @override
   void didChangeDependencies() {
+    //  if (_loadedInitData == false) {
     final routeArguments = ModalRoute.of(context)!.settings.arguments as Map<
         String,
         String>; //из Route /meals-of-category' достаем данные и распределяем в Map
@@ -32,13 +34,16 @@ class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
             categoryId); //создаем список с отфильтрованными Meals по категориям
       },
     ).toList();
-
+    // _loadedInitData = true;
+    // }
     super.didChangeDependencies();
   }
 
   void _popRemoveMeal(String mealId) {
     setState(() {
-      displayedMeals.removeWhere((element) => element.id == mealId);
+      displayedMeals.removeWhere((element) =>
+          element.id ==
+          mealId); //создание списка после удаления просмотренного элемента по кнопке из MealDescriptionScreen
     });
   }
 
@@ -46,8 +51,7 @@ class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            categoryTitle), // используется проверка на non null используется ! в конце
+        title: Text(categoryTitle),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
@@ -58,7 +62,7 @@ class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
             duration: displayedMeals[index].duration,
             complexity: displayedMeals[index].complexity,
             affordability: displayedMeals[index].affordability,
-            removeItem: _popRemoveMeal,
+            removeItemCallBack: _popRemoveMeal,
           );
         },
         itemCount: displayedMeals.length,

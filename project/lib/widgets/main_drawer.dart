@@ -45,7 +45,7 @@ class MainDrawer extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed('/');
           }),
           buildListTile('Filter meals', Icons.filter_vintage_rounded, () {
-            Navigator.of(context).pushReplacementNamed(FiltersScreen
+            Navigator.of(context).pushNamed(FiltersScreen
                 .routeName); //если зашел с главного на Filters свайп назад сворачивает приложение
           }),
         ],

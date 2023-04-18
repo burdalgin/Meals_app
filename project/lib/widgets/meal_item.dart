@@ -10,7 +10,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
+  final Function removeItemCallBack;
 
   const MealItem(
       {required this.id,
@@ -19,7 +19,7 @@ class MealItem extends StatelessWidget {
       required this.duration,
       required this.complexity,
       required this.affordability,
-      required this.removeItem});
+      required this.removeItemCallBack});
 
   String get complexitiText //задаем значения enum аргументу
   {
@@ -53,11 +53,13 @@ class MealItem extends StatelessWidget {
 
   void selectMeal(BuildContext ctx) {
     Navigator.of(ctx)
-        .pushNamed(MealDescriptionScreen.routeName, arguments: id)
-        .then((popFrom) {
-      if (popFrom !=
-          null) // это выполняется если с экарана MealDescriptionScreen выполнился pop()
-        removeItem(popFrom);
+        .pushNamed(MealDescriptionScreen.routeName,
+            arguments:
+                id) //когда закрывается экран MealDescriptionScreen тогда выполняется then
+        .then((mealIdPopFromMealDescriptionScreen) {
+      if (mealIdPopFromMealDescriptionScreen != null) {
+        removeItemCallBack(mealIdPopFromMealDescriptionScreen);
+      }
     });
   }
 

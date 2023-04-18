@@ -128,8 +128,8 @@ class MealDescriptionScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.delete),
-        onPressed: () => Navigator.of(context)
-            .pop(mealId) //pop() удаляет экран на первом уровне стека экранов
+        onPressed: () => Navigator.of(context).pop(
+            mealId) //pop() удаляет экран на первом уровне стека экранов и передает значение mealId
         ,
       ),
     );
