@@ -7,7 +7,7 @@ class FiltersScreen extends StatefulWidget {
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
-bool _showVegetarian =
+bool _filterVegeterian =
     false; //для switch не нужно обьявлять переменную в Build если нужна возможность переключать
 
 class _FiltersScreenState extends State<FiltersScreen> {
@@ -27,19 +27,19 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ),
           Row(
             children: <Widget>[
-              Text('Dont show Vegetarian meals'),
+              Text('Show only Vegetarian meals'),
               Switch(
-                  value: _showVegetarian,
+                  value: _filterVegeterian,
                   onChanged: (value) {
                     setState(() {
-                      _showVegetarian = value;
+                      _filterVegeterian = value;
                     });
                   }),
             ],
           ),
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pop(_showVegetarian);
+              Navigator.of(context).pop(_filterVegeterian);
             },
             icon: Icon(Icons.filter_alt_outlined),
             label: Text('Confirm?'),
