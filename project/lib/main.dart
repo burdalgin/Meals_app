@@ -1,15 +1,52 @@
 import 'package:flutter/material.dart';
-import 'screens/categories_screen.dart';
+import 'package:project/models/meal.dart';
+
 import 'screens/meals_of_catergory_screen.dart';
 import 'screens/meal_desctription_screen.dart';
 import 'screens/page_not_found_screen.dart';
-import './screens/tabs_screen.dart';
+
 import './screens/tabs_screen_bottom.dart';
 import './screens/filters-screen.dart';
+import './data/dummy_data.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegeterian': false,
+  };
+
+  List<Meal> _filteredMeals = dummyMeals;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _filteredMeals = dummyMeals.where((element) {
+        if (_filters['gluten'] == true && !element.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] == true && !element.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan'] == true && !element.isVegan) {
+          return false;
+        }
+        if (_filters['vegeterian'] == true && !element.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,9 +96,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => TabsScreenBottom(), //устанавливаем домашнюю страницу
         //это MAP поэтому в {}
-        MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
+        MealsOfCategoryScreen.routeName: (ctx) =>
+            MealsOfCategoryScreen(_filteredMeals),
         MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
       },
       /*onGenerateRoute: (settings) {
         //позволяет не регистрировать в Main(routes)
