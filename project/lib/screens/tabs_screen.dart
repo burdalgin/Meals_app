@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 //Табы наверху экрана
 class TabsScreen extends StatefulWidget {
@@ -34,7 +35,9 @@ class _TabsScreenState extends State<TabsScreen> {
             ],
           ),
         ),
+        drawer: MainDrawer(),
         body: TabBarView(children: <Widget>[
+          // размещаем ссылки на экраны
           CategoriesScreen(),
           FavoritesScreen(),
         ]),
