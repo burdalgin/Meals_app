@@ -3,6 +3,9 @@ import 'screens/categories_screen.dart';
 import 'screens/meals_of_catergory_screen.dart';
 import 'screens/meal_desctription_screen.dart';
 import 'screens/page_not_found_screen.dart';
+import './screens/tabs_screen.dart';
+import './screens/tabs_screen_bottom.dart';
+import './screens/filters-screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +38,8 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
         primaryColor: Colors.purple,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        accentColor: Colors.pink,
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: Color.fromARGB(255, 175, 16, 219),
@@ -52,10 +57,11 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(), //устанавливаем домашнюю страницу
       initialRoute: '/', //устанавливаем значение домашней страницы
       routes: {
-        '/': (ctx) => CategoriesScreen(), //устанавливаем домашнюю страницу
+        '/': (ctx) => TabsScreenBottom(), //устанавливаем домашнюю страницу
         //это MAP поэтому в {}
         MealsOfCategoryScreen.routeName: (ctx) => MealsOfCategoryScreen(),
         MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       /*onGenerateRoute: (settings) {
         //позволяет не регистрировать в Main(routes)
