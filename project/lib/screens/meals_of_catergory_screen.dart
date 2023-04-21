@@ -34,9 +34,7 @@ class _MealsOfCategoryScreenState extends State<MealsOfCategoryScreen> {
 
     displayedMeals = widget.filteredMeals.where(
       (meal) {
-        return meal.categories.contains(categoryId) &&
-            meal.isVegetarian ==
-                true; //создаем список с отфильтрованными Meals по категориям
+        return meal.categories.contains(categoryId);
       },
     ).toList();
 
