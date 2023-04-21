@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Map<String, bool> _filters = {
+  Map<String, bool> _filtersdata = {
     'gluten': false,
     'lactose': false,
     'vegan': false,
@@ -28,18 +28,18 @@ class _MyAppState extends State<MyApp> {
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
-      _filters = filterData;
+      _filtersdata = filterData;
       _filteredMeals = dummyMeals.where((element) {
-        if (_filters['gluten'] == true && !element.isGlutenFree) {
+        if (_filtersdata['gluten'] == true && !element.isGlutenFree) {
           return false;
         }
-        if (_filters['lactose'] == true && !element.isLactoseFree) {
+        if (_filtersdata['lactose'] == true && !element.isLactoseFree) {
           return false;
         }
-        if (_filters['vegan'] == true && !element.isVegan) {
+        if (_filtersdata['vegan'] == true && !element.isVegan) {
           return false;
         }
-        if (_filters['vegeterian'] == true && !element.isVegetarian) {
+        if (_filtersdata['vegeterian'] == true && !element.isVegetarian) {
           return false;
         }
         return true;
@@ -99,7 +99,8 @@ class _MyAppState extends State<MyApp> {
         MealsOfCategoryScreen.routeName: (ctx) =>
             MealsOfCategoryScreen(_filteredMeals),
         MealDescriptionScreen.routeName: (ctx) => MealDescriptionScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
+        FiltersScreen.routeName: (ctx) =>
+            FiltersScreen(_setFilters, _filtersdata),
       },
       /*onGenerateRoute: (settings) {
         //позволяет не регистрировать в Main(routes)

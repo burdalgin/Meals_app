@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters-screen';
   final Function setFilter;
+  final Map<String, bool> currentFilterStatus;
 
-  FiltersScreen(this.setFilter);
+  FiltersScreen(this.setFilter, this.currentFilterStatus);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -16,6 +17,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _isGlutenFree = false;
   bool _isVegan = false;
   bool _isLactoseFree = false;
+
+  @override
+  void
+      initState() //перезаписывает инициализированные значения на установленные в  _buildSwitchListTile
+  {
+    _isGlutenFree = widget.currentFilterStatus['gluten'] as bool;
+    _isLactoseFree = widget.currentFilterStatus['lactose'] as bool;
+    _isVegan = widget.currentFilterStatus['vegan'] as bool;
+    _isVegeterian = widget.currentFilterStatus['vegeterian'] as bool;
+    super.initState();
+  }
 
   Widget _buildSwitchListTile(
       String title, bool currentValue, Function(bool) updateValue) {
@@ -35,14 +47,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            child: Center(
-              child: Text('FILTERS'),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
+            // flex: 2,
+            height: 250,
             child: ListView(
               children: <Widget>[
                 _buildSwitchListTile('Show only vegeterian', _isVegeterian,
@@ -81,9 +87,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
               };
 
               widget.setFilter(selectedFilters);
+              Navigator.of(context).pop();
             },
             icon: Icon(Icons.filter_alt_outlined),
-            label: Text('Confirm?'),
+            label: Text('Save filters?'),
           ),
         ],
       ),
