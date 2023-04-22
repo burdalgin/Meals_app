@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 import './favorites_screen.dart';
 import '../widgets/main_drawer.dart';
+import '../models/meal.dart';
 
 //Табы наверху экрана
 class TabsScreen extends StatefulWidget {
   // const TabsScreen({super.key});
+
+  late List<Meal> favoritesmeals;
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -39,7 +42,7 @@ class _TabsScreenState extends State<TabsScreen> {
         body: TabBarView(children: <Widget>[
           // размещаем ссылки на экраны
           CategoriesScreen(),
-          FavoritesScreen(),
+          FavoritesScreen(widget.favoritesmeals),
         ]),
       ),
     );
