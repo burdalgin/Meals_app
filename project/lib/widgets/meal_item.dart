@@ -10,16 +10,15 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItemCallBack;
 
-  const MealItem(
-      {required this.id,
-      required this.title,
-      required this.imageUrl,
-      required this.duration,
-      required this.complexity,
-      required this.affordability,
-      required this.removeItemCallBack});
+  const MealItem({
+    required this.id,
+    required this.title,
+    required this.imageUrl,
+    required this.duration,
+    required this.complexity,
+    required this.affordability,
+  });
 
   String get complexitiText //задаем значения enum аргументу
   {
@@ -58,7 +57,7 @@ class MealItem extends StatelessWidget {
                 id) //когда закрывается экран MealDescriptionScreen тогда выполняется then
         .then((mealIdPopFromMealDescriptionScreen) {
       if (mealIdPopFromMealDescriptionScreen != null) {
-        removeItemCallBack(mealIdPopFromMealDescriptionScreen);
+        // removeItemCallBack(mealIdPopFromMealDescriptionScreen);
       }
     });
   }

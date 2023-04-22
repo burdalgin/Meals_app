@@ -6,6 +6,11 @@ class MealDescriptionScreen extends StatelessWidget {
   //const MealDescriptionScreen({super.key});
   static const routeName = '/meal-description';
 
+  final Function toggleFavoriteMeal;
+  final Function isMealFavorite;
+
+  MealDescriptionScreen(this.toggleFavoriteMeal, this.isMealFavorite);
+
   Widget buildTitle(context, String title) {
     return Container(
       child: Padding(
@@ -127,10 +132,10 @@ class MealDescriptionScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () => Navigator.of(context).pop(
-            mealId) //pop() удаляет экран на первом уровне стека экранов и передает значение mealId
-        ,
+        child: Icon(
+            isMealFavorite(mealId) ? Icons.favorite : Icons.favorite_border),
+        onPressed: () => toggleFavoriteMeal(
+            mealId), //pop() удаляет экран на первом уровне стека экранов и передает значение mealId
       ),
     );
   }

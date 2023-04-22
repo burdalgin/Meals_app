@@ -2,26 +2,36 @@ import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 import './favorites_screen.dart';
 import '../widgets/main_drawer.dart';
+import '../models/meal.dart';
 
 //Табы внизуу экрана
 class TabsScreenBottom extends StatefulWidget {
+  final List<Meal> favoritesmeals;
+
+  TabsScreenBottom(this.favoritesmeals);
+
   @override
   State<TabsScreenBottom> createState() => _TabsScreenBottom();
 }
 
 class _TabsScreenBottom extends State<TabsScreenBottom> {
-  final List<Map<String, Object>> _pages = [
-    {
-      'page': CategoriesScreen(),
-      'title': 'Categories',
-    },
-    {
-      'page': FavoritesScreen(),
-      'title': 'Your Favorite',
-    }
-  ]; //можно жобавить все что угодно, к чему нужен доступ в зависимости от выбпанного экрана
-
   int _selectedPageIndex = 0;
+  late List<Map<String, Object>> _pages;
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': CategoriesScreen(),
+        'title': 'Categories',
+      },
+      {
+        'page': FavoritesScreen(widget.favoritesmeals),
+        'title': 'Your Favorite',
+      }
+    ]; //можно жобавить все что угодно, к чему нужен доступ в зависимости от выбпанного экрана
+
+    super.initState();
+  }
 
   void _pageSelector(
       int index) //Flutter автоматически определяет Index при onTap и ндексирует элементы!!!
